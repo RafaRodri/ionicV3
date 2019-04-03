@@ -3,21 +3,30 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Cadastrar</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+  </ion-item>
+
+  <!--<p>-->
+    <!--<button color="danger" ion-button full (click)="getPhoto()">-->
+      <!--<ion-icon  name="camera"></ion-icon>-->
+      <!--Imagem-->
+    <!--</button>-->
+    <!--<img src="{{dream.imagePath}}" alt="" *ngIf="dream.imagePath" width="100%" height="150px">-->
+  <!--</p>-->
+
+  <p>
+    <button ion-button full (click)="saveUser(user)">Cadastrar</button>
+  </p>
 </ion-content>
