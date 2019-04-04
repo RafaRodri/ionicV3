@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-list',
@@ -14,7 +14,7 @@ export class ListPage {
   selectedItem: any;
   icons: string[];
   user = {
-    //imagePath: "",
+    img: "",
     name: "",
     email: ""
   };
@@ -45,23 +45,21 @@ export class ListPage {
         });
   }
 
-  getPhoto(){
+  getPhoto() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
 
-    this.camera.getPicture(options)
-      .then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        //  this.user.imagePath = base64Image;
-      }, (err) => {
-        console.log(err);
-      });
+    this.camera.getPicture(options).then((imageData) => {
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.user.img = base64Image;
+
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }
