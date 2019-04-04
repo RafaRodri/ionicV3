@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'page-list',
@@ -8,7 +9,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 })
 export class ListPage {
 
-  private url: string = 'http://restful:8080/index.php/'
+  private url: string = 'http://169.254.131.10:8080/rest/api_restful/public/index.php/'
 
   selectedItem: any;
   icons: string[];
@@ -21,7 +22,8 @@ export class ListPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
-              public http: Http) {
+              public http: Http,
+              public camera: Camera) {
   }
 
   saveUser(user){
@@ -41,6 +43,25 @@ export class ListPage {
           });
           toast.present();
         });
+  }
+
+  getPhoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options)
+      .then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        //  this.user.imagePath = base64Image;
+      }, (err) => {
+        console.log(err);
+      });
   }
 
 }

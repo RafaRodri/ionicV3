@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
-  private url: string = 'http://restful:8080/index.php/'
+  private url: string = 'http://169.254.131.10:8080/rest/api_restful/public/index.php/'; //'http://restful:8080/index.php/'
   public users: Array<{}>;
 
   private page: number = 1;

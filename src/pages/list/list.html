@@ -18,13 +18,13 @@
     <ion-input type="text" [(ngModel)]="user.email"></ion-input>
   </ion-item>
 
-  <!--<p>-->
-    <!--<button color="danger" ion-button full (click)="getPhoto()">-->
-      <!--<ion-icon  name="camera"></ion-icon>-->
-      <!--Imagem-->
-    <!--</button>-->
-    <!--<img src="{{dream.imagePath}}" alt="" *ngIf="dream.imagePath" width="100%" height="150px">-->
-  <!--</p>-->
+  <p>
+    <button color="danger" ion-button full (click)="getPhoto()">
+      <ion-icon name="camera"></ion-icon>
+      Tirar foto
+    </button>
+    <!--<img src="{{user.imagePath}}" alt="" *ngIf="user.imagePath" width="100%" height="150px">-->
+  </p>
 
   <p>
     <button ion-button full (click)="saveUser(user)">Cadastrar</button>
